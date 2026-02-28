@@ -1,5 +1,5 @@
 ##Deploy PaloFirewall into Hub vNET
-New-AzureRmResourceGroup -Name magoni -Location AustraliaSouthEast
+#New-AzureRmResourceGroup -Name magoni -Location AustraliaSouthEast
 New-AzResourceGroupDeployment -ResourceGroupName "magoni" -TemplateFile "/home/matthew/sdwan-fw/Pan2deploytemplate.json" -TemplateParameterFile "/home/matthew/sdwan-fw/Pan2deploymentparameters.json"
 
 
