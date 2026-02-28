@@ -6,7 +6,7 @@
             "value": "australiasoutheast"
         },
         "publicIPAddressName": {
-            "value": "pan2-ip"
+            "value": "sdwan-fw-ip"
         },
         "publicIPNewOrExisting": {
             "value": "new"
@@ -15,7 +15,7 @@
             "value": "Dynamic"
         },
         "publicIPRGName": {
-            "value": "pan2-rg"
+            "value": "sdwan-fw-rg"
         },
         "vmName": {
             "value": "sdwan-fw"
