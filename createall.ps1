@@ -5,7 +5,7 @@ New-AzResourceGroupDeployment -ResourceGroupName "magoni" -TemplateFile "/home/m
 
 
 ##get Palto network ready after template deployment
-$nic = Get-AzNetworkInterface -Name paloaltofw-sdwan-fw-ip-eth0 -ResourceGroup magoni
+$nic = Get-AzNetworkInterface -Name sdwan-fw-sdwan-fw-ip-eth0 -ResourceGroup magoni
 $nic.IpConfigurations.publicipaddress.id = $null
 Set-AzNetworkInterface -NetworkInterface $nic
 Remove-AzureRmPublicIpAddress -Name sdwan-fw-ip -ResourceGroupName magoni
@@ -15,14 +15,14 @@ New-AzPublicIpAddress -Name sdwan-fw-untrust-Ip -ResourceGroupName magoni -Locat
 
 $vnet = Get-AzVirtualNetwork -Name SDWAN-vNET -ResourceGroupName magoni
 $subnet = Get-AzVirtualNetworkSubnetConfig -Name Mgt -VirtualNetwork $vnet
-$nic = Get-AzNetworkInterface -Name paloaltofw-sdwan-fw-ip-eth0 -ResourceGroupName magoni
+$nic = Get-AzNetworkInterface -Name sdwan-fw-sdwan-fw-ip-eth0 -ResourceGroupName magoni
 $pip = Get-AzPublicIpAddress -Name sdwan-fw-mgt-Ip -ResourceGroupName magoni
 $nic | Set-AzNetworkInterfaceIpConfig -Name ipconfig-mgmt -PublicIPAddress $pip -Subnet $subnet
 $nic | Set-AzNetworkInterface
 
 $vnet = Get-AzVirtualNetwork -Name SDWAN-vNET -ResourceGroupName magoni
 $subnet = Get-AzVirtualNetworkSubnetConfig -Name Untrust -VirtualNetwork $vnet
-$nic = Get-AzNetworkInterface -Name paloaltofw-sdwan-fw-ip-eth1 -ResourceGroupName magoni
+$nic = Get-AzNetworkInterface -Name sdwan-fw-sdwan-fw-ip-eth1 -ResourceGroupName magoni
 $pip = Get-AzPublicIpAddress -Name sdwan-fw-untrust-Ip -ResourceGroupName magoni
 $nic | Set-AzNetworkInterfaceIpConfig -Name ipconfig-untrust -PublicIPAddress $pip -Subnet $subnet
 $nic | Set-AzNetworkInterface
@@ -32,17 +32,17 @@ $rule2 = New-AzNetworkSecurityRuleConfig -Name ALLOUT -Description "Allow ALL OU
 $nsg = New-AzNetworkSecurityGroup -ResourceGroupName magoni -Location australiasoutheast -Name "AllowALL" -SecurityRules $rule1,$rule2
 
 
-$nic = Get-AzNetworkInterface -ResourceGroupName "magoni" -Name "paloaltofw-sdwan-fw-ip-eth0"
+$nic = Get-AzNetworkInterface -ResourceGroupName "magoni" -Name "sdwan-fw-sdwan-fw-ip-eth0"
 $nsg = Get-AzNetworkSecurityGroup -ResourceGroupName "magoni" -Name "AllowAll"
 $nic.NetworkSecurityGroup = $nsg
 $nic | Set-AzNetworkInterface
 
-$nic = Get-AzNetworkInterface -ResourceGroupName "magoni" -Name "paloaltofw-sdwan-fw-ip-eth1"
+$nic = Get-AzNetworkInterface -ResourceGroupName "magoni" -Name "sdwan-fw-sdwan-fw-ip-eth1"
 $nsg = Get-AzNetworkSecurityGroup -ResourceGroupName "magoni" -Name "AllowAll"
 $nic.NetworkSecurityGroup = $nsg
 $nic | Set-AzNetworkInterface
 
-$nic = Get-AzNetworkInterface -ResourceGroupName "magoni" -Name "paloaltofw-sdwan-fw-ip-eth2"
+$nic = Get-AzNetworkInterface -ResourceGroupName "magoni" -Name "sdwan-fw-sdwan-fw-ip-eth2"
 $nsg = Get-AzNetworkSecurityGroup -ResourceGroupName "magoni" -Name "AllowAll"
 $nic.NetworkSecurityGroup = $nsg
 $nic | Set-AzNetworkInterface
