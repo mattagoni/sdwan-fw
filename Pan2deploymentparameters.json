@@ -59,7 +59,7 @@
             "value": "Untrust"
         },
         "subnet2Name": {
-            "value": "Network1"
+            "value": "Trust"
         },
         "subnet0Prefix": {
             "value": "10.50.2.0/24"
