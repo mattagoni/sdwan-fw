@@ -18,7 +18,7 @@
             "value": "pan2-rg"
         },
         "vmName": {
-            "value": "paloaltofw"
+            "value": "sdwan-fw"
         },
         "adminUsername": {
             "value": "magoni"
